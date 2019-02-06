@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %}{% endblock %}</title>
+	<meta charset="utf-8" content="width=device-width, initial-scale=1">
+
+	{% block js_header %}
+		{% load static %}
+		<script type="text/javascript" src='{% static "myapp/js/jquery-3.3.1.min.js" %}'></script>
+	{% endblock %}
+	{% block css_header %}
+		<link rel="stylesheet" type="text/css" href="{% static 'myapp/css/bootstrap.css' %}">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+	{% endblock %}
+	<style type="text/css">
+		
+	</style>
+</head>
+
+<body style="background-color: rgb(230,230,230);margin-bottom: 250px;">
+	<header style="">
+		<h1 style="text-align: center;">Welcome to my site!</h1>
+		<div class = 'btn-group shadow'style='width: 98%;margin-left: 20px;'>
+			<button type = 'button' class='btn btn-secondary' >
+				<a href="/" style="text-decoration: none;color: white;">Home</a>
+			</button>
+			<button type = 'button' class='btn btn-secondary'>
+				<a  href="/category?name=Landscapes"style="text-decoration: none;color: white;">Landscape</a>
+			</button>
+			<button type = 'button' class='btn btn-secondary'>
+				<a  href="/category?name=StillLives"style="text-decoration: none;color: white;">Still-lives</a>
+			</button>      
+			
+			<button type = 'button' class='btn btn-secondary'>
+				<a  href="/category?name=MarineArt"style="text-decoration: none;color: white;">Marine Art</a>
+			</button>      
+			<button type = 'button' class='btn btn-secondary'>
+				<a  href="/category?name=Portraits"style="text-decoration: none;color: white;">Portrait</a>
+			</button>     
+			<button type = 'button' class='btn btn-secondary' >
+				<a href="/LogIn.html" style="text-decoration: none;color: white;">SignIn</a>
+			</button>
+			<button type = 'button' class='btn btn-secondary' >
+				<a href="/LogIn.html" style="text-decoration: none;color: white;">LogIn</a>
+			</button>
+		</div>
+	</header>
+	
+		{% block content %}
+		{% endblock %}
+	
+	{% block recommendation %}
+		
+	{% endblock %}
+	
+	<!-- {% block footer%}
+	{% endblock %} -->
+</body>
+
+</html>

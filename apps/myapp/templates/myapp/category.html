@@ -1,0 +1,31 @@
+{% extends 'myapp/base.html' %}
+{% load static tags %}
+{% block title %} {{category_name}} {% endblock %}
+
+{% block js_header %}
+	{{block.super}}
+{% endblock %}
+{% block css_header %}
+	{{block.super}}
+{% endblock %}
+{% block content %}
+	
+	<div  style='width: 100%;background-color: rgb(230,230,230);'>
+		<h1 style="text-align: center;">{{ category_name }}</h1>
+		<hr>
+		<div style="width: 100%;margin-left: 20px;">
+		{% for picture in pictures %}
+			<div class="card bg-light shadow p-4 mb-4 bg-white" style="width: 400px;float: left;margin-left: 60px;margin-top: 30px; border: none;">
+
+			  <img class="card-img-top" src="{% img_address picture.category picture.file %}" alt="Card image" style="height: 200px;">
+			  <div class="card-body">
+			    <h4 class="card-title">{{ picture.name }}</h4>
+			    <h5 class="card-text">{{ picture.author }}, {{ picture.year }}</h5>
+			    <!-- <a href="#" class="btn btn-primary">See all pictures of the author</a> -->
+			  </div>
+			</div>
+		{% endfor %}
+		</div>
+	</div>
+	
+{% endblock %}

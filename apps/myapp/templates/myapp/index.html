@@ -1,0 +1,208 @@
+{% extends 'myapp/base.html' %}
+{% load static tags %}
+{% block title %} Start Page {% endblock %}
+
+{% block js_header %}
+	{{block.super}}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+		$(".ref").on("click","a", function (event) {
+		event.preventDefault();
+		var id = $(this).attr('href'),
+		top = $(id).offset().top;
+
+		$('body,html').animate({scrollTop: top}, 1500);
+		});
+		});
+	</script>
+{% endblock %}
+{% block css_header %}
+	{{block.super}}
+	<style>
+
+	.ref {
+
+	}
+
+	
+  	</style>
+{% endblock %}
+{% block content %}
+	<div style="width: 100%; margin-left: 20px;">
+		
+	<h1 style="text-align: center;width: 100%;">
+		Landscapes
+	</h1>
+	<hr>
+	<div style="width: 100%">
+	<a href="/category?name=Landscapes" style="text-decoration: none;color:black;"><h3 style="margin-left:20px;">See all landscapes</h3></a>
+
+	{% for picture in pictures_landscapes %}
+		<div id="{{picture.id}}"class="card bg-light shadow p-4 mb-4 bg-white" style="width: 400px;float: left;margin-left: 15px;margin-top: 30px; border: none; margin-right: 60px;">
+			
+			<img class="card-img-top" src="{% img_address picture.category picture.file %}" alt="Card image" style="height: 200px;">
+			<div class="card-body">
+				<h4 class="card-title">{{picture.name}}</h4>
+				<h5 class="card-text">{{picture.author}}, {{picture.year}}</h5>
+				<a href="#" class="btn btn-secondary shadow">See all pictures of the author</a> 
+			</div>
+		</div>
+	{% endfor %}
+
+	</div>
+	
+	<div style="width: 100%;float:left;">
+	<a href="/category?name=MarineArt" style="text-decoration: none;color:black;"><h3 style="margin-left:20px;">See all marines</h3></a>
+
+	{% for picture in pictures_marineArt %}
+		<div id="{{picture.id}}"class="card bg-light shadow p-4 mb-4 bg-white" style="width: 400px;float: left;margin-left: 15px;margin-top: 30px; border: none; margin-right: 60px;">
+			
+			<img class="card-img-top" src="{% img_address picture.category picture.file %}" alt="Card image" style="height: 200px;">
+			<div class="card-body">
+				<h4 class="card-title">{{picture.name}}</h4>
+				<h5 class="card-text">{{picture.author}}, {{picture.year}}</h5>
+				<a href="#" class="btn btn-secondary shadow">See all pictures of the author</a> 
+			</div>
+		</div>
+	{% endfor %}
+	</div>
+	<div style="width: 100%;float:left;">
+	<a href="/category?name=StillLives" style="text-decoration: none;color:black;"><h3 style="margin-left:20px;">See all still-lives</h3></a>
+
+	{% for picture in pictures_stillLives %}
+		<div id="{{picture.id}}"class="card bg-light shadow p-4 mb-4 bg-white" style="width: 400px;float: left;margin-left: 15px;margin-top: 30px; border: none; margin-right: 60px;">
+			
+			<img class="card-img-top" src="{% img_address picture.category picture.file %}" alt="Card image" style="height: 200px;">
+			<div class="card-body">
+				<h4 class="card-title">{{picture.name}}</h4>
+				<h5 class="card-text">{{picture.author}}, {{picture.year}}</h5>
+				<a href="#" class="btn btn-secondary shadow">See all pictures of the author</a> 
+			</div>
+		</div>
+	{% endfor %}
+	</div>
+	<div style="width: 100%;float:left;">
+	<a href="/category?name=Portraits" style="text-decoration: none;color:black;"><h3 style="margin-left:20px;">See all portraits</h3></a>
+
+	{% for picture in pictures_portraits %}
+		<div id="{{picture.id}}"class="card bg-light shadow p-4 mb-4 bg-white" style="width: 400px;float: left;margin-left: 15px;margin-top: 30px; border: none; margin-right: 60px;">
+			
+			<img class="card-img-top" src="{% img_address picture.category picture.file %}" alt="Card image" style="height: 200px;">
+			<div class="card-body">
+				<h4 class="card-title">{{picture.name}}</h4>
+				<h5 class="card-text">{{picture.author}}, {{picture.year}}</h5>
+				<a href="#" class="btn btn-secondary shadow">See all pictures of the author</a> 
+			</div>
+		</div>
+	{% endfor %}
+	</div>
+
+	</div>
+{% endblock %}
+{% block recommendation %}
+	<div class="rounded shadow" style="right:20px;top:205px;position: fixed;background-color: white;width:400px;height:850px;">
+		<h2 style="text-align: center;padding: 5px;"> May be interesting for you:</h2>
+		<hr>
+		<span style="margin:25px;margin-top:20px;">
+			<div id="demo" class="carousel slide" data-ride="carousel">
+
+				<!-- Indicators -->
+				<ul class="carousel-indicators">
+					<li data-target="#demo" data-slide-to="{{first_recommanded.index}}" class="active"></li>
+					{% for image in recommandations %}
+						<li data-target="#demo" data-slide-to="{{image.index}}" class="active"></li>
+					{% endfor %}
+				</ul>
+				
+				<!-- The slideshow -->
+				<div class="carousel-inner" style="margin:5px;"> 
+						<div class="carousel-item active ref">
+							<a href="#{{first_recommanded.id}}"><img src="{% img_address first_recommanded.category first_recommanded.file %}" alt="picture" width="390px" height="210px"></a>
+						</div>
+					{% for image in recommandations %}
+						<div class="carousel-item ref">
+							<a href="#{{image.id}}"><img src="{% img_address image.category image.file %}" alt="picture" width="390px" height="210px"></a>
+						</div>
+					{% endfor %}
+				</div>
+				
+				<!-- Left and right controls -->
+				<a class="carousel-control-prev" href="#demo" data-slide="prev">
+					<span class="carousel-control-prev-icon"></span>
+				</a>
+				<a class="carousel-control-next" href="#demo" data-slide="next">
+					<span class="carousel-control-next-icon"></span>
+				</a>
+			</div>
+		</span>
+		<span style="margin:25px;">
+			<div id="demo" class="carousel slide" data-ride="carousel">
+
+				<!-- Indicators -->
+				<ul class="carousel-indicators">
+					<li data-target="#demo" data-slide-to="{{first_recommanded.index}}" class="active"></li>
+					{% for image in recommandations %}
+						<li data-target="#demo" data-slide-to="{{image.index}}" class="active"></li>
+					{% endfor %}
+				</ul>
+				
+				<!-- The slideshow -->
+				<div class="carousel-inner" style="margin:5px;"> 
+						<div class="carousel-item active ref">
+							<a href="#{{first_recommanded.id}}"><img src="{% img_address first_recommanded.category first_recommanded.file %}" alt="picture" width="390px" height="210px"></a>
+						</div>
+					{% for image in recommandations %}
+						<div class="carousel-item ref">
+							<a href="#{{image.id}}"><img src="{% img_address image.category image.file %}" alt="picture" width="390px" height="210px"></a>
+						</div>
+					{% endfor %}
+				</div>
+				
+				<!-- Left and right controls -->
+				<a class="carousel-control-prev" href="#demo" data-slide="prev">
+					<span class="carousel-control-prev-icon"></span>
+				</a>
+				<a class="carousel-control-next" href="#demo" data-slide="next">
+					<span class="carousel-control-next-icon"></span>
+				</a>
+			</div>
+		</span>
+		<span>
+			<div id="demo" class="carousel slide" data-ride="carousel">
+
+				<!-- Indicators -->
+				<ul class="carousel-indicators">
+					<li data-target="#demo" data-slide-to="{{first_recommanded.index}}" class="active"></li>
+					{% for image in recommandations %}
+						<li data-target="#demo" data-slide-to="{{image.index}}" class="active"></li>
+					{% endfor %}
+				</ul>
+				
+				<!-- The slideshow -->
+				<div class="carousel-inner" style="margin:5px;"> 
+						<div class="carousel-item active ref">
+							<a href="#{{first_recommanded.id}}"><img src="{% img_address first_recommanded.category first_recommanded.file %}" alt="picture" width="390px" height="210px"></a>
+						</div>
+					{% for image in recommandations %}
+						<div class="carousel-item ref">
+							<a href="#{{image.id}}"><img src="{% img_address image.category image.file %}" alt="picture" width="390px" height="210px"></a>
+						</div>
+					{% endfor %}
+				</div>
+				
+				<!-- Left and right controls -->
+				<a class="carousel-control-prev" href="#demo" data-slide="prev">
+					<span class="carousel-control-prev-icon"></span>
+				</a>
+				<a class="carousel-control-next" href="#demo" data-slide="next">
+					<span class="carousel-control-next-icon"></span>
+				</a>
+			</div>
+		</span>
+		
+
+	</div>
+{% endblock %}
