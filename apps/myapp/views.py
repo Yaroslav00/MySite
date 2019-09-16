@@ -3,6 +3,9 @@ from django.http import Http404
 from apps.myapp.models import Picture
 from random import random
 
+
+def func ():
+        pass
 def start_page(request):
     if request.method == 'GET':
         pictures_landscapes = Picture.objects.filter(category='Landscapes')[:6]
