@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<!DOCTYPE db [
+<!ELEMENT db (cars, users, addresses)>
+<!ATTLIST db name CDATA #REQUIRED>
+<!ELEMENT cars (car)*>
+<!ELEMENT users (user)*>
+<!ELEMENT addresses (address)*>
+<!ELEMENT car (model, brand)>
+<!ELEMENT brand (#PCDATA)>
+<!ELEMENT model (#PCDATA)>
+<!ELEMENT user (name,surname)>
+<!ELEMENT address (street, house)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT surname (#PCDATA)>
+<!ELEMENT street (#PCDATA)>
+<!ELEMENT house (#PCDATA)>
+<!ATTLIST address id ID #REQUIRED
+            user_id IDREF #REQUIRED>
+<!ATTLIST user user_id ID #REQUIRED
+            car_ids IDREFS #IMPLIED>
+<!ATTLIST car car_id ID #REQUIRED>
+]>
+<db name="car_shop">
+    <cars>
+        <car car_id="car_id1">
+            <model>
+             Model1
+            </model>
+            <brand>
+                Brand1
+            </brand>
+        </car>
+        <car car_id="car_id2">
+            <model>
+             Model2
+            </model>
+            <brand>
+                Brand2
+            </brand>
+        </car>
+        <car car_id="car_id3">
+            <model>
+             Model3
+            </model>
+            <brand>
+                Brand3
+            </brand>
+        </car>
+        <car car_id="car_id4">
+            <model>
+             Model4
+            </model>
+            <brand>
+                Brand4
+            </brand>
+        </car>
+        
+
+    </cars>
+    <users>
+        <user user_id="user_id1" car_ids="car_id1 car_id2">
+            <name>
+                Name1
+            </name>
+            <surname>
+                Surname1
+            </surname>
+        </user>
+        <user user_id="user_id2" car_ids="car_id3 car_id2">
+            <name>
+                Name2
+            </name>
+            <surname>
+                Surname2
+            </surname>
+        </user>
+         <user user_id="user_id3" car_ids="car_id1 car_id3">
+            <name>
+                Name3
+            </name>
+            <surname>
+                Surname3
+            </surname>
+        </user>
+         <user user_id="user_id4">
+            <name>
+                Name4
+            </name>
+            <surname>
+                Surname4
+            </surname>
+        </user>
+
+    </users>
+    <addresses>
+        <address id="address_id1" user_id="user_id2">
+            <street>
+                Street1
+            </street>
+            <house>
+                4
+            </house>
+        </address>
+        <address id="address_id2" user_id="user_id1">
+            <street>
+            Street2
+            </street>
+            <house>
+                4
+            </house>
+        </address>
+        <address id="address_id3" user_id="user_id3">
+            <street>
+            Street5
+            </street>
+            <house>
+             6
+            </house>
+        </address>
+        <address id="address_id4" user_id="user_id4">
+            <street>
+            Street7
+            </street>
+            <house>
+            8
+            </house>
+        </address>
+        <address id="address_id5" user_id="user_id2">
+            <street>
+            Street9
+            </street>
+            <house>
+            10
+            </house>
+        </address>
+
+    </addresses>
+</db>
